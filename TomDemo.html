@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link href="bootstrap.min.css" rel="stylesheet">
+    <script>
+        // 方法可以當類別用
+        function Box() {
+            this.color = "";
+        }
+
+
+        function Button1_onclick() {
+            var emp = {};
+            emp.firstName = "tang";
+            emp.sayHello = function(name) {
+                alert("Hello!" + name);
+            }
+            var objBox = new Box();
+            objBox.color = "BLUE";
+            emp.sayHello(objBox.color);
+        }
+
+        function Prototype_onclick() {
+
+            //使用prototype 為類別建立一個新的屬性 
+            Box.prototype.sayHello = function() {
+                alert("hello!");
+            }
+            var Item = new Box;
+
+            Item.sayHello();
+        }
+
+
+
+        function Button2_onclick() {
+            var i = 0;
+            //   循環計時
+            setInterval(function() {
+                i++;
+                debug.innerText = i;
+            }, 1000);
+
+            //   預約計時
+            //   setTimeout(function( ){i++;debug.innerText=i;},1000 );
+        }
+
+
+        function Json_onclick() {
+            // A. 物件陣列，用中括號框住一組以 JSON 格式表現的物件
+            var objArray = [
+                { "firstName": "Derek", "lastName": "Jeter" },
+                { "firstName": "Jeremy", "lastName": "Lin" },
+                { "firstName": "Lionel", "lastName": "Messi" }
+            ];
+
+            //JSON.stringify 將物件轉成Json字串
+            debug.innerText = JSON.stringify(objArray);
+
+            //JSON.parse  將Json字串 轉換成物件
+            var objJsonArray = JSON.parse(JSON.stringify(objArray));
+            debug.innerText = "";
+            objJsonArray.forEach(function(obj) {
+                debug.innerText += obj.firstName + "-" + obj.lastName;
+                debug.innerHTML += "<br/>";
+
+            })
+
+        }
+
+        // 建立localStorage
+        function LocalStorage_onclick() {
+            localStorage.setItem("name", "tsai");
+            document.getElementById("LocalBTN").value = localStorage["name"];
+        }
+        // 清空localStorage
+        function ClearLocalBTN_onclick() {
+            localStorage.clear();
+
+        }
+    </script>
+</head>
+
+<body style="font-family: Microsoft JhengHei;" >
+    <br/> 1.利用方法當類別使用
+    <br/>
+    <input type="button" class="btn btn-success" value="JavaScript_FunctionReplaceClass" onclick="Button1_onclick()" name="" />
+    <br/>
+    <br/> 2.利用setInterval來達到循環計時
+    <br/>
+    <input type="button" class="btn btn-success" value="JavaScript_SetIterval" onclick="Button2_onclick()" name="" />
+    <br/>
+    <br/> 3.利用Json物件
+    <br/>
+    <input type="button" class="btn btn-success" value="JavaScript_UsingJson " onclick="Json_onclick()" name="" />
+    <br/>
+    <br/> 4.利用prototype 為類別創造一個新的屬性
+    <br/>
+    <input type="button" class="btn btn-success" value="JavaScript_Prototype  " onclick="Prototype_onclick()" name="" />
+    <br/> 5.Local Storage
+    <br/>
+    <input id="LocalBTN" type="button" class="btn btn-success" value="JavaScript_LocalStorage  " onclick="LocalStorage_onclick()" name="" />
+    <input id="ClearLocalBTN" type="button" class="btn btn-success" value="ClearLocalBTN" onclick="ClearLocalBTN_onclick()" name="" />
+    
+    <BR/>
+    <form  action="echo.php" method="POST">
+       <label for="txtTest">YourName</label><input type="text" id="txtTest" name="txtTest"/>
+     <input type="checkbox" id="chkbox" name="chkbox"/> <label for="chkbox">music</label>
+        <input type="submit" value="Submit"/>
+    </form>
+    
+    
+    
+    
+    
+    
+    <hr/>
+    <hr/>
+
+    <br/>
+    <canvas id="myCanvas" width="400" height="50" style="border:1px solid #000000;" ></canvas>
+    <canvas id="myCanvas" width="400" height="200" style="border:1px solid #000000;"  onmousemove="picture(event)" ></canvas>
+
+
+    <div id="debug"></div>
+    <script>
+        function picture(event)
+        {
+            debug.innerText=event.clientX +','+event.clientY;
+            
+        }
+        
+    </script>
+    <script>
+        // HTML5 Canvas 繪圖三部曲:
+        // 1. 找出 Canvas
+        var c = document.getElementById("myCanvas");
+        // 2. 傳回 2D 繪圖引擎物件
+        var ctx = c.getContext("2d");
+        // 3. 開始作畫
+
+        // 用藍色畫出圖片外框
+        ctx.strokeStyle = "#0000FF";
+        ctx.strokeRect(0, 0, 200, 50);
+
+        // 以黑色塗滿圖片下緣製作出黑底區塊
+        ctx.fillStyle = "#000000";
+        ctx.fillRect(0, 35, 200, 15);
+
+        // 置中對齊輸出文字
+        ctx.font = "24px Arial italic";
+        ctx.textBaseline = "top";
+        ctx.textAlign = "center";
+        ctx.fillText("Tom Tsai", 100, 5);
+
+        // 在黑底區塊描出黑底白字文字
+        ctx.font = "8px Arial italic";
+        ctx.textBaseline = "top";
+        ctx.textAlign = "center";
+        ctx.fillStyle = "#FFFFFF";
+        ctx.fillText("Powered by HTML5", 100, 35);
+
+        // 刷上藍色漸層背景增添質感
+        // 以下這段程式，若非不是一開始就畫出，就必須設定
+        // globalCompositeOperation，否則，預設會蓋掉先前的內容
+         ctx.globalCompositeOperation = "destination-over";
+        var grd = ctx.createLinearGradient(0, 0, 0, 50);
+        grd.addColorStop(0, "white");
+        grd.addColorStop(1, "#0000EE");
+        ctx.fillStyle = grd;
+        ctx.fillRect(0, 0, 200, 50);
+    </script>
+</body>
+
+</html>

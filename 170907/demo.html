@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!--javascript window.onload 時 取出陣列-->
+        <script type="text/javascript">
+            window.onload=function()
+            {
+                  var session=["A","B","C","D"]; 
+            for (var i = 0; i < session.length; i++) {
+                var obj ='<h2>'+session[i]+'<h2/>'
+                msg.innerHTML+=obj;
+            }
+            // javascript 亂數
+            msg.innerHTML+=Math.floor(Math.random()*10);
+
+            }
+        </script>
+        
+        <script type="text/javascript" >
+            
+            function getCharTimesWhile()
+            {
+                var Count =0;
+                while(Count<=3)
+                {
+                    alert(Count);
+                    Count++;
+                }
+                
+            }
+            
+               function getCharTimesFor()
+            {
+                var Count =0;
+                while(Count<=3)
+                {
+                    alert(Count);
+                    Count++;
+                }
+                
+            }
+            
+        </script>
+        
+        
+        
+        
+    </head>
+    <body>
+        
+        <div id="msg"></div>
+        <input type="button" value="while" onclick="getCharTimesWhile()"/>
+      <input type="button" value="for" onclick="getCharTimesFor()"/>
+            
+    </body>
+</html>
